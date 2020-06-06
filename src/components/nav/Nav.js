@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Contact from "../contact/Contact";
 import Home from "../homePage/HomePage";
-import GameData from "../gameData/GameData";
 import GameDetails from "../gameData/GameDetails";
 
 

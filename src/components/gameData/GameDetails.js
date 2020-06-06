@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import GameData from "./GameData";
 import { BASE_URL } from "../constants/GameApi";
-
-
+import { useParams } from "react-router-dom"
 function GameDetails() {
+   let { id } = useParams();
+    
     const [ cardDetails, setCardDetails] = useState([]);
+    console.log(cardDetails.id);
     const name = cardDetails.name;
     const rating = cardDetails.rating;
     const released = cardDetails.released;
     const background_image = cardDetails.background_image;
     const description = cardDetails.description
-const id = "https://api.rawg.io/api/games/4"
+    const websiteLink = cardDetails.website
     
     useEffect(function() {
-        fetch(id)
+        fetch(BASE_URL + "/" + id)
         .then(function(response) {
             return response.json();
         })
@@ -27,12 +28,14 @@ const id = "https://api.rawg.io/api/games/4"
 
     return (
         
-                    <div className="wrap">  
-                        <img className="image" src={background_image} alt={name}/>
+                    <div className="details-wrap">  
                         <h3 className="gameTitle">Title: {name}</h3>
+                        <img className="image" src={background_image} alt={name}/>
+                        
                         <p className="gameTitle">Rating: {rating}</p>
                         <p className="gameTitle">Release date: {released}</p>
-                        <p className="gameTitle">Description: {description}</p>
+                        <div className="gameTitle">Description: {description}</div>
+                        <a href={websiteLink}><p className="link-button">Link to game webpage</p></a>
                     </div> 
                 )
 

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { BASE_URL } from "../constants/GameApi";
 import Search from "../search/Search";
-import GameDetails from "./GameDetails";
 
- 
-function GameData({name, rating, released, background_image}) {
+
+
+function GameData() {
     const [ apiData, SetApiData ] = useState([]);
     const [ filteredApiData, SetFilteredApiData ] = useState([])
 
@@ -37,7 +37,6 @@ function GameData({name, rating, released, background_image}) {
         });
         SetFilteredApiData(filteredArray);
     }
-
     
     return (
         <>
@@ -47,8 +46,8 @@ function GameData({name, rating, released, background_image}) {
             {filteredApiData.map(function(list) {
                 const { name, rating, released, background_image, id } = list; 
                 return (
-                    <Link to={"/game/:id"}>
-                        <div className="wrap">  
+                    <Link to={"/game/" + id}>
+                        <div className="wrap" id="wrap">  
                         <img className="image" src={background_image} alt={name}/>
                         <h3 className="gameTitle">Title: {name}</h3>
                         <p className="gameTitle">Rating: {rating}</p>
